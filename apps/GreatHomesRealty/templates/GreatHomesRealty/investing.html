@@ -1,0 +1,412 @@
+<html>
+<head>
+	<title>Investing</title>
+	{% load staticfiles %}
+	<meta name="viewport" content="width=device-width, initial-scale=0.5">
+	<script src = "{% static '/js/jquery.js' %}" type="text/javascript"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'GreatHomesRealty/ionicons.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/infoPages.css' %}">
+</head>
+<script type="text/javascript">
+$(document).ready(function() {
+	$(".1").click(function(){
+    	$(".1a").toggle();
+	});
+	$(".2").click(function(){
+    	$(".2a").toggle();
+	});
+	$(".3").click(function(){
+    	$(".3a").toggle();
+	});
+	$(".4").click(function(){
+    	$(".4a").toggle();
+	});
+	$(".5").click(function(){
+    	$(".5a").toggle();
+	});
+	$(".6").click(function(){
+    	$(".6a").toggle();
+	});
+	$(".7").click(function(){
+    	$(".7a").toggle();
+	});
+	$(".8").click(function(){
+    	$(".8a").toggle();
+	});
+	$(".9").click(function(){
+    	$(".9a").toggle();
+	});
+})
+</script>
+<style type="text/css">
+</style>
+<body>
+	{% if request.session.login > 0 %}
+	<header>
+		<ul>
+			<li><a href="{%url 'GreatHomes:index' %}">HomePage</a></li>
+			<li><a href="{%url 'UserDashboard:index' %}">DashBoard</a></li>
+			<li><a href="{%url 'UserDashboard:editProfileDisplay' %}">Edit Profile</a></li>
+			<li><a href="{%url 'GreatHomes:showAgentListing' id=request.session.login %}">Your Profile</a></li>
+			<li><a href="{%url 'GreatHomes:showAllListing' %}">Listings</a></li>
+			<li><a href="{%url 'GreatHomes:addListingDisplay' %}">Add Listing</a></li>
+		{% if user.user_level == "Admin" %}
+			<li><a href="{%url 'UserDashboard:createDisplay' %}">Add New Agent</a></li>
+		{% endif %}
+			<li><a href="{%url 'UserDashboard:logout' %}">Log Off</a></li>
+		</ul>
+	</header>
+	{% endif %}
+	<div class = "header">
+		<div class = "container-fluid">
+			<div class = "col-sm-5">
+				<h1><a href="{%url 'GreatHomes:index' %}"><i class = "ion-ios-home"></i> Great Homes Realty</a></h1>
+			</div>
+			<div class = "col-sm-7 navlinks">
+				<ul>
+					<li>
+						  <a class="dropdown-toggle" data-toggle="dropdown">All Listings
+						  <span class="caret"></span></a>
+						  <ul class="dropdown-menu">
+						    <li><a href="{%url 'GreatHomes:showAllListing' %}">For Sale</a></li>
+						    <li><a href="{%url 'GreatHomes:showAllRentals' %}">For Rent</a></li>
+						  </ul>
+					</li>
+					<li>
+						  <a class="dropdown-toggle" data-toggle="dropdown">Buying
+						  <span class="caret"></span></a>
+						  <ul class="dropdown-menu">
+						    <li><a href="{%url 'GreatHomes:buying' %}">Buying a Home</a></li>
+						    <li><a href="{%url 'GreatHomes:mortgage' %}">Mortgages</a></li>
+						    <li><a href="{%url 'GreatHomes:owningHome' %}">Owning A Home</a></li>
+						  </ul>
+					</li>
+					<li>
+						<a class="dropdown-toggle" data-toggle="dropdown">Selling
+						  <span class="caret"></span></a>
+						  <ul class="dropdown-menu">
+						    <li><a href="{%url 'GreatHomes:selling' %}">Selling</a></li>
+						    <li><a href="{%url 'GreatHomes:investing' %}">Investing</a></li>
+						  </ul>
+					<li><a href="{%url 'GreatHomes:aboutUs' %}">About Us</a></li>
+					<li><a href="{%url 'GreatHomes:suscribeDisplay' %}">Newsfeed</a></li>
+					<li><a href="{%url 'login:index' %}">Login</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class = "container-fluid main">
+		<h1>Investing</h1>
+		<h3 class = "1"><i class = "ion-arrow-down-b"></i> Condos, Apartments & Single-Family Homes</h3>
+		<ul class = "1a initiallyHidden">
+			<li class = "question">Are condominiums risky to buy?</li>
+			<li>While condos never had the kind of appreciation experienced by single-family homes in the go-go 1980s, most ultimately have not lost value, say some experts. And with high prices in many urban markets and more single home buyers in the market than ever before, the market for condos is strong.
+
+As with any home purchase, you should do your homework about the neighborhood or development before you buy. In the case of condominiums, it is important to read the past six months of homeowners association minutes to see how effective the board is and to learn about any possibly detracting issues (such as protracted litigation with the developer).
+
+The condominium community has worked hard in the last few years to overcome image problems brought on by disputes and lawsuits. Associations are becoming more sophisticated about property management and taking steps to prevent legal problems and disputes.</li>
+			<li class = "question">Are condos a good investment?</li>
+			<li>Condominiums have held their value as an investment despite economic downturns and problems with some associations. In fact, condos have appreciated more in the past few years than when they first came on the scene in the late 1970s and early 1980s, experts say.
+
+While there are lots of reports about homeowners association disputes and construction-defect problems, the industry has worked hard to turn its image around. Elected volunteers who serve on association boards are better trained at handling complex budget and legal issues, for example, while many boards go to great lengths to avoid the kind of protracted and expensive litigation that has hurt resale value in the past.
+
+Meanwhile, changing demographics are making condominiums more attractive investments for single home buyers, empty nesters and first-time buyers in expensive markets.</li>
+			<li class = "question">Are one-bedroom condominiums a good investment?</li>
+			<li>One-bedroom condominiums historically have not been considered as good an investment as condos with two bedrooms or more. But in high-cost markets, such as Manhattan or the San Francisco Bay Area, one-bedroom condos have proven to be equally good investments. Helping that along are changing demographic trends. With more single home buyers in the market today than at any time in history, there is more demand for one-bedroom condos.</li>
+			<li class = "question">How do I figure out the homeowners association?</li>
+			<li>Learn everything you can about the homeowners association before you buy into a development governed by one. The association's financial, political and legal conditions are very important to your investment and quality of life.
+
+When run properly, homeowners associations maintain the common grounds and keep civility in the complex. If you follow the rules, the association should not intrude on your privacy or cost you too much in association dues.
+
+Poorly managed associations can drag down property values and make living there difficult for residents. Start by studying the association’s covenants, codes and restrictions, or CC&Rs, and find out if you can live by them. For example, if the rules prohibit loud music after a certain hour and you like to play your CDs late at night, this may not be the place for you. Don't move in thinking you can get away with violating the rules or change them later because you may find yourself in turmoil with determined neighbors firmly in control of the association board.
+
+Find out all you can about the association's finances. Beyond reviewing the budget, talk to the association treasurer and find out if dues are expected to increase and if any special assessments are planned. Ask if special inspections have revealed problems with roofs or plumbing that may cause a dues hike or special assessment later on.
+
+Call and meet with the association president. If you are the type of person who despises intrusions into your private life and the president seems more interested in gossip about the residents than maintaining the property, this may not be the right condo complex for you.
+
+Speak with residents to get their views on the association's finances, its property manager, how it operates and any politics. Associations are volunteer organizations with elected boards, like a mini-government, so politics can enter the picture and spoil a good thing.</li>
+			<li class = "question">How do I project rents on a rental?</li>
+			<li>If you are buying a rental income property and applying for a loan to do so, the lender will require an area rent survey by a certified appraiser. The amount a landlord can expect to receive in monthly rent largely depends on what the property has rented for in the past, the condition of the building, its location and the current housing market.
+
+Lenders also look at other cash-flow considerations. They want to know if you have enough reserves on hand to cover predictable and unforeseen expenses, such as property insurance, taxes, regular maintenance and repairs.</li>
+			<li class = "question">How do you choose between condos and single-family homes?</li>
+			<li>Using appreciation as a measure, condominiums in some areas have been as profitable an investment as single-family homes in the past five years. And in some markets, condos appreciated even more, according to some experts.
+
+While single-family homes have been the preferred investment by home buyers, changing demographics are helping make condos more popular, especially among single home buyers, empty nesters and first-time buyers in high-priced markets.
+
+Also, the condominium community has worked hard in the last few years to overcome image problems brought on by homeowners association and developer disputes as well as all too frequent construction-defect litigation.</li>
+			<li class = "question">What do you think of a vacation home as an investment?</li>
+			<li>You can buy a vacation home today for investment purposes as well as enjoyment. And yes, there are tax benefits.
+
+Some people buy a vacation home to use as a permanent retirement home later, which allows them to get ahead on their payments. Another benefit is that the interest and property taxes on a vacation home are tax-deductible.
+
+Some real estate experts predict that vacation homes will appreciate in value due to rising demand from the aging Baby Boom generation. You also can depreciate the property if you live in the house fewer than 14 days a year, or 10 percent of the number of rented days - whichever is greater.
+
+You also need to consider whether you can afford to carry two mortgages, pay for the extra utilities and maintenance costs, and how this investment fits into your total personal finance picture.</li>
+			<li class = "question">What do you think of get-rich-quick real estate schemes?</li>
+			<li>Most real estate experts say there is no such thing as getting rich quick in real estate. But there's no end to get-rich-quick programs presented to the public as alternative methods of buying real estate.
+
+Some are reputable while others depend on your financial circumstances to work. A handful are simply scams.
+
+Many get-rich-on-real-estate programs offer advice on how to buy government foreclosure properties and participate in other government programs. Most of this information can be obtained by calling the government offices involved directly.
+
+Anyone interested in real estate investments would be wise to explore a variety of sources. Most investors view real estate as a long-term investment. Deals that sound too good to be true often are.</li>
+		</ul>
+		<h3 class = "2"><i class = "ion-arrow-down-b"></i> Fixer-Uppers</h3>
+		<ul class = "2a initiallyHidden">
+			<li class = "question">Are fixers a good idea in bad areas?</li>
+			<li>It depends. Distressed properties or fixer-uppers can be found anywhere, even in wealthier neighborhoods. Such properties are poorly maintained and have a lower market value than other houses in the neighborhood.
+
+Many experts recommend that before you make such an investment, first find the least desirable house in the best neighborhood. Then do the math to see if what it would cost to bring up the value of that property to its full potential market value is within your budget. If you are a novice buyer, it may be wiser to look for properties that only need cosmetic fixes rather than run-down houses that need major structural repairs.</li>
+			<li class = "question">Are there any special tax breaks for historic rehab?</li>
+			<li>Qualified rehabilitated buildings and certified historic structures currently enjoy a 20 percent investment tax credit for qualified rehabilitation expenses. A historic structure is one listed in the National Register of Historic Places or so designated by an appropriate state or local historic district also certified by the government.
+
+The tax code does not allow deductions for the demolition or significant alternation of a historic structure.</li>
+			<li class = "question">Are there gov't programs for rehab?</li>
+			<li>The U.S. Department of Housing and Urban Development's Section 203 (K) rehabilitation loan program is designed to facilitate major structural rehabilitation of houses with one to four units that are more than one year old. Condominiums are not eligible.
+
+The 203(K) loan is usually done as a combination loan to purchase a fixer-upper property "as is" and rehabilitate it, or to refinance a temporary loan to buy the property and do the rehabilitation. It can also be done as a rehabilitation-only loan.
+
+Plans and specifications for the proposed work must be submitted for architectural review and cost estimation. Mortgage proceeds are advanced periodically during the rehabilitation period to finance the construction costs.
+
+For a list of participating lenders, call HUD at (202) 708-1112.
+
+If you are a veteran, loans from the U.S. Department of Veterans Affairs also can be used to buy a home, build a home, improve a home or to refinance an existing loan. VA loans frequently offer lower interest rates than ordinarily available with other kinds of loans. To qualify for a loan, the first step is to apply for a Certificate of Eligibility.
+
+Another program is the Fedeal Housing Administration's Title 1 FHA loan program.</li>
+			<li class = "question">How do building codes work?</li>
+			<li>Building codes are established by local authorities to set out minimum public-safety standards for building design, construction, quality, use and occupancy, location and maintenance. There are specialized codes for plumbing, electrical and fire, which usually involve separate inspections and inspectors.
+
+All buildings must be issued a building permit and a certificate of occupancy before it can be used. During construction, housing inspectors must make checks at key points. Codes are usually enforced by denying permits, occupancy certificates and by imposing fines.
+
+Building codes also cover most remodeling projects. If you are buying a house that has been significantly remodeled, ask for proof of the permits involved before you purchase to avoid future liability for fines.</li>
+			<li class = "question">What are some resources for info on home improvements?</li>
+			<li>If you're getting ready to embark on a home improvement project involving contracting help, "Ready, Set, Build: A Consumer's Guide to Home Improvement Planning Contracts" lays out a road map for selecting the right contractor, obtaining competitive bids up to what to include in a contract. There also is information on consumer rights, liens and financing.
+
+The book is available for $9.95 through Consumer Press and Women's Publications, Inc., 13326 Southwest 28th St., Fort Lauderdale, FL 33330-1102; (954) 370-9153, bookguest@aol.com.</li>
+			<li class = "question">What kind of return is there on remodeling jobs?</li>
+			<li>Remodeling magazine produces an annual "Cost vs. Value Report'' that answers just that question. The most important point to remember is that remodeling a home not only improves its livability for you but its curb appeal with a potential buyer down the road.
+
+Most recently, the highest remodeling paybacks have come from updating kitchens and baths, home-office additions and extra amenities in older homes. While home offices are a relatively new remodeling trend, for example, you could expect to recoup 58 percent of the cost of adding a home office, according to the survey.</li>
+			<li class = "question">Where are fixer-uppers found?</li>
+			<li>You can find distressed properties or fixer-uppers in most communities, even wealthier neighborhoods. A distressed property is one that has been poorly maintained and has a lower market value than other houses in the immediate area.
+
+Ascertaining whether the property you're interested in is a wise investment takes some work. You need to figure what the average house in a given area sells for, as well as what the most desirable houses in that area are like and what they cost.
+
+Some experts suggest that buyers who take this route try to find a "cosmetic fixer" that can be completely refurbished with paint, wallpaper, new floor and window coverings, landscaping and new appliances. You should avoid run-down houses that need major structural repairs. A house price that looks too good to be true probably is. A smart buyer will find out why before buying it.
+
+The basic strategy for a fixer is to find the least desirable house in the most desirable neighborhood, and then decide if the expenses needed to bring the value of that property up to its full potential market value are within one's rehab budget.</li>
+		</ul>
+
+		<h3 class = "3"><i class = "ion-arrow-down-b"></i> Foreclosures</h3>
+		<ul class = "3a initiallyHidden">
+			<li class = "question">Are foreclosures an option?</li>
+			<li>A foreclosure property is a home that has been repossessed by the lender because the owners failed to pay the mortgage. Thousands of homes end up in foreclosure every year. Economic conditions affect the number of foreclosures, too. Many people lose their homes due to job loss, credit problems or unexpected expenses.
+
+It is wise to be cautious when considering a foreclosure. Many experts, in fact, advise inexperienced buyers to hire an expert to take them through the process. It is important to have the house thoroughly inspected and to be sure that any liens, undisclosed mortgages or court judgements are cleared or at least disclosed.</li>
+			<li class = "question">Can I get a HUD home for as little as $100 down?</li>
+			<li>If you are strapped for cash and looking for a bargain, you may be able to buy a foreclosure property acquired by the U.S. Department of Housing and Urban Development for as little as $100 down.
+
+With HUD foreclosures, down payments vary depending on whether the property is eligible for FHA insurance. If not, payments range from 5 to 20 percent. But when the property is FHA-insured, the down payment can go much lower.
+
+Each offer must be accompanied by an "earnest money" deposit equal to 5 percent of the bid price, not to exceed $2,000 but not less than $500.
+
+The U.S. Department of Veterans Affairs also offers foreclosure properties which can be purchased directly from the VA often well below market value and with a down payment amount as low as 2 percent for owner-occupants. Investors may be required to pay up to 10 percent of the purchase price as a down payment. This is because the VA guarantees home loans and often ends up owning the property if the veteran defaults.
+
+If you are interested in purchasing a VA foreclosure, call (800) 827-1000 or visit foreclosurefreesearch.com for a current listing. About 100 new properties are listed every two weeks.
+
+You should be aware that foreclosure properties are sold "as is," meaning limited repairs have been made but no structural or mechanical warranties are implied.</li>
+			<li class = "question">Do you have to buy HUD homes through a realty agent?</li>
+			<li>You can only purchase a U.S. Department of Housing and Urban Development property through a licensed real estate broker. HUD will pay the broker's commission up to 6 percent of the sales price.</li>
+			<li class = "question">How do you find government-repossessed homes?</li>
+			<li>The U.S. Department of Housing and Urban Development acquires properties from lenders who foreclose on mortgages insured by HUD. These properties are available for sale to both homeowner-occupants and investors.
+
+You can only purchase HUD-owned properties through a licensed real estate broker. HUD will pay the broker's commission up to 6 percent of the sales price.
+
+Down payments vary depending on whether the property is eligible for FHA insurance. If not, payments range from the conventional market's 5 to 20 percent.
+
+One caution. HUD homes are sold "as is," meaning limited repairs have been made made but no structural or mechanical warranties are implied.</li>
+			<li class = "question">How do you get financing for a foreclosure?</li>
+			<li>One reason there are few bidders at foreclosure sales is that it is next to impossible to get financing for such a property. You generally need to show up with cash and lots of it, or a line of credit with your bank upon which you can draw cashier's checks.</li>
+			<li class = "question">How does a home go into foreclosure?</li>
+			<li>Foreclosure proceedings usually begin after a borrower has skipped three mortgage payments. The lender will record a notice of default against the property. Unless the debt is satisfied, the lender will foreclose on the mortgage and proceed to set up a trustee sale.</li>
+			<li class = "question">What happens at a trustee sale?</li>
+			<li>Trustee sales are advertised in advance and require an all-cash bid. The sale is usually conducted by a sheriff, a constable or lawyer acting as trustee. This kind of sale, which usually attracts savvy investors, is not for the novice.
+
+In a trustee sale, the lender who holds the first loan on the property starts the bidding at the amount of the loan being foreclosed. Successful bidders receive a trustee's deed.</li>
+			<li class = "question">What types of foreclosure are there?</li>
+			<li>Judicial foreclosure action is a proceeding in which a mortgagee, a trustee or another lienholder on property requests a court-supervised sale of the property to cover the unpaid balance of a delinquent debt.
+
+Nonjudicial foreclosure is the process of selling real property under a power of sale in a mortgage or deed of trust that is in default. In such a foreclosure, however, the lender is unable to obtain a deficiency judgment, which makes some title insurance companies reluctant to issue a policy.</li>
+			<li class = "question">Where can you find foreclosed HUD homes?</li>
+			<li>The U.S. Department of Housing and Urban Development acquires properties from lenders who foreclose on mortgages insured by HUD. These properties are available for sale to both homeowner-occupants and investors.
+
+You can only buy HUD-owned properties through a licensed real estate broker, whose commission will be paid by HUD.
+
+Down payments vary depending on whether the property is eligible for FHA insurance. If not, payments range 5 to 20 percent. When the property is FHA-insured, the down payment can go much lower. Each accepted offer must be accompanied by an "earnest money" deposit equal to 5 percent of the bid price not to exceed $2,000, but not less than $500.
+
+You should be aware that HUD homes are sold "as is," meaning limited repairs have been made but no structural or mechanical warranties are implied.</li>
+			<li class = "question">Where can you find foreclosures?</li>
+			<li>In most states, a foreclosure notice must be published in the legal notices section of a local newspaper where the property is located or in the nearest city. Also, foreclosure notices are usually posted on the property itself and somewhere in the city where the sale is to take place.
+
+When a homeowner is late on three payments, the bank will record a notice of default against the property. When the owner fails to pay up, a trustee sale is held, and the property is sold to the highest bidder. The financial institution that has initiated foreclosure proceedings usually will set the bid price at the loan amount.
+
+Despite these seemingly straightforward rules, buying foreclosures is not easy as it may sound. Sophisticated investors use the technique so novices may find themselves among stiff competition.
+
+Resources:
+
+* "The Smart Money Guide to Bargain Homes, How to Find and Buy Foreclosures," James I. Wiedemer, Dearborn Financial Publishing, Chicago; 1994.
+
+* "Real Estate Principles," Charles O. Stapleton III, Thomas Moran and Martha R. Williams, Dearborn Financial Publishing, Chicago; 2001. Purchase online.
+
+* "Real Estate Investing From A to Z," William H. Pivar, McGraw-Hill, 2003. Purchase online.</li>
+		</ul>
+
+		<h3 class = "4"><i class = "ion-arrow-down-b"></i> Real Estate Value</h3>
+		<ul class = "4a initiallyHidden">
+			<li class = "question">Can you buy homes below market?</li>
+			<li>While a typical buyer may look at five to 10 homes before making an offer, an investor who makes bargain buys usually goes through many more. Most experts agree it takes a lot of determination to find a real "bargain." There are a number of ways to buy a bargain property:
+
+*Buy a fixer-upper in a transitional neighborhood, improve it and keep it or resell at a higher price.
+
+* Buy a foreclosure property (after doing your research carefully).
+
+* Buy a house due to be torn down and move it to a new lot.
+
+* Buy a partial interest in a piece of real estate, such as part of a tenants-in-common partnership.
+
+* Buy a leftover house in a new-home development.</li>
+			<li class = "question">How can I improve the value of my property?</li>
+			<li>The biggest factor outside of a homeowner’s control is market conditions. But other issues -- including the condition of the property, specific home improvements and neighborhood stability and safety -- can influence property values.
+
+The greatest rise in home prices occurs when the economy is strong and the number of home sales is increasing. Though markets vary, that has occurred several times in recent history -- including the early 1970s, late 1980s and late 1990s.
+
+Specific home improvements can increase the value above the cost of the improvements. According to Remodeling magazine, which publishes an annual "Cost vs. Value" remodeling report, a remodeled bathroom returns 81 percent to the owner, a bathroom addition, 89 percent and a master bedroom suite, 82 percent. Remember, quality pays. Well-planned and well-executed remodeling jobs are a good investment while bad work seldom enhances value or livability.
+
+The safety and security of a neighborhood can affect property values, too. If you live in a high-crime area, an organized community watch program not only will lower the crime rate but give home values a boost, too.</li>
+			<li class = "question">How do you determine the value of a troubled property?</li>
+			<li>Buyers considering a foreclosure property should obtain as much information as possible from the lender, including the range of bids expected.
+
+It also is important to examine the property. If you are unable to get into a foreclosure property, check with surrounding neighbors about the property's condition.
+
+It also is possible to do your own cost comparison through researching comparable properties recorded at local county recorder's and assessor's offices, or through Internet sites specializing in property records.
+
+</li>
+			<li class = "question">How do you increase the value of your property?</li>
+			<li>The biggest factor that can affect property value -- market conditions -- are outside of your control. But other factors -- including the condition of the property, certain home improvements and neighborhood stability and safety -- are not.
+
+For example, specific home improvements can increase your property value above the cost of the improvements themselves, such as remodeling a kitchen, adding a bathroom, finishing a basement or upgrading landscaping. Just be sure that quality pays with remodeling. A bad remodeling job will do little to boost your property value.
+
+If you live in a high-crime area, an organized community watch program not only will lower the crime rate but can enhance property values, too. It also helps to live in an area where other homeowners are upgrading their homes, which can help pull up your property value, too.
+
+The bottom line is to measure the cost of any improvements you want to make against the overall values in your neighborhood. If you overimprove for the neighborhood, you may not necessarily recover your costs or boost your property value significantly.</li>
+			<li class = "question">What are the standard ways of finding out how much a home is worth?</li>
+			<li>A comparative market analysis and an appraisal are the standard methods for determining a home's value.
+
+Your real estate agent will be happy to provide a comparative market analysis, an informal estimate of value based on comparable sales in the neighborhood. Be sure you get listing prices of current homes on the market as well as those that have sold. You also can research this yourself by checking on recent sales in public records. Be sure that you are researching properties that are similar in size, construction and location. This information is not only available at your local recorder's or assessor's office but also through private companies and on the Internet.
+
+An appraisal, which generally costs $200 to $300 to perform, is a certified appraiser's opinion of the value of a home at any given time. Appraisers review numerous factors including recent comparable sales, location, square footage and construction quality.</li>
+			<li class = "question">What is the difference between market value and appraised value?</li>
+			<li>The appraised value of a house is a certified appraiser's opinion of the worth of a home at a given point in time. Lenders require appraisals as part of the loan application process; fees range from $200 to $300.
+
+Market value is what price the house will bring at a given point in time. A comparative market analysis is an informal estimate of market value, based on sales of comparable properties, performed by a real estate agent or broker. Either an appraisal or a comparative market analysis is the most accurate way to determine what your home is worth.</li>
+			<li class = "question">What kind of return is there on remodeling jobs?</li>
+			<li>Remodeling magazine produces an annual "Cost vs. Value Report'' that answers just that question. The most important point to remember is that remodeling a home not only improves its livability for you but its curb appeal with a potential buyer down the road.
+
+Most recently, the highest remodeling paybacks have come from updating kitchens and baths, home-office additions and extra amenities in older homes. While home offices are a relatively new remodeling trend, for example, you could expect to recoup 58 percent of the cost of adding a home office, according to the survey.</li>
+		</ul>
+
+		<h3 class = "5"><i class = "ion-arrow-down-b"></i> Whom to Contact</h3>
+		<ul class = "5a initiallyHidden">
+			<li class = "question">Where do I find about IRS properties?</li>
+			<li>Go the IRS property site at treas.gov.</li>
+			<li class = "question">Where do I get information on homes with historic value?</li>
+			<li>For information about homes with historic value, contact the National Trust for Historic Preservation, Washington, D.C. at (202) 588-6000; nationaltrust.org.</li>
+			<li class = "question">Where do I get information on REITS?</li>
+			<li>Ask for information on real estate investment trusts, or REITs, from the National Association of Real Estate Investment Trusts, 1875 Eye St, N.W., Washington, DC 20006; (800) 362-7348; nareit.com.</li>
+			<li class = "question">Where do I learn about HUD foreclosures?</li>
+			<li>One good source is their Web page hud.gov.</li>
+			
+		</ul>
+
+		<h3 class = "6"><i class = "ion-arrow-down-b"></i> Income Taxes</h3>
+		<ul class = "6a initiallyHidden">
+			<li class = "question">How do I reach the IRS?</li>
+			<li>To reach the Internal Revenue Service, call (800) TAX-1040; irs.gov.</li>
+			<li class = "question">Where do I get information on IRS publications?</li>
+			<li>The Internal Revenue Service publishes a number of real estate publications. They are listed by number:
+
+* 521 "Moving Expenses"
+
+* 523 "Selling Your Home"
+
+* 527 "Residential Rental Property"
+
+* 534 "Depreciation"
+
+* 541 "Tax Information on Partnerships"
+
+* 551 "Basis of Assets"
+
+* 555 "Federal Tax Information on Community Property"
+
+* 561 "Determining the Value of Donated Property"
+
+* 590 "Individual Retirement Arrangements"
+
+* 908 "Bankruptcy and Other Debt Cancellation"
+
+* 936 "Home Mortgage Interest Deduction"
+
+These publications are available for free online or by calling (800) TAX-FORM.</li>
+		</ul>
+
+		<h3 class = "7"><i class = "ion-arrow-down-b"></i> Property Taxes</h3>
+		<ul class = "7a initiallyHidden">
+			<li class = "question">Are property taxes deductible?</li>
+			<li>Property taxes on all real estate, including those levied by state and local governments and school districts, are fully deductible against current income taxes.</li>
+			<li class = "question">Are taxes on second homes deductible?</li>
+			<li>Mortgage interest and property taxes are deductible on a second home if you itemize. Check with your accountant or tax adviser for specifics.</li>
+			<li class = "question">How do property taxes work?</li>
+			<li>Property taxes are what most homeowners in the United States pay for the privilege of owning a piece of real estate, on average 1.5 percent of the property's current market value. These annual local assessments by county or local authorities help pay for public services and are calculated using a variety of formulas.</li>
+			<li class = "question">How is a home's value determined?</li>
+			<li>You have several ways to determine the value of a home.
+
+An appraisal is a professional estimate of a property's market value, based on recent sales of comparable properties, location, square footage and construction quality. This service varies in cost depending on the price of the home. On average, an appraisal costs about $300 for a $250,000 house.
+
+A comparative market analysis is an informal estimate of market value performed by a real estate agent based on similar sales and property attributes. Most agents offer free analyses in the hopes of winning your business.
+
+You also can get a comparable sales report for a fee from private companies that specialize in real estate data or find comparable sales information available on various real estate Internet sites.
+</li>
+			<li class = "question">Where can I learn more about appealing my property taxes?</li>
+			<li>Contact your local tax assessor's office to see what procedures to follow to appeal your property tax assessment. You may be able to appeal your assessment informally. Mostly likely, however, you will have to go through a formal tax-appeal processes, which begin with an appeal filed with the appropriate assessment appeals board.</li>
+		</ul>
+	</div>
+		<div class = "footer">
+		<div class = "container-fluid">
+		<div class = "row">
+			<div class = "col-xs-3">
+				<address>
+				Principal Broker: Bill Yu<br>
+				Cell: (410)-984-6661<br>
+				Email: BillYu99@gmail.com <br>
+				9822 Tenney Ct <br> Ellicott City, MD 21042
+				</address>
+			</div>
+			<div class = "col-xs-8 col-xs-offset-1 footerlist">
+				<ul>
+					<li><a href="{%url 'GreatHomes:index' %}">Home</a></li>
+					<li><a href="{%url 'GreatHomes:buying' %}">Buying</a></li>
+					<li><a href="{%url 'GreatHomes:selling' %}">Selling</a></li>
+					<li><a href="{%url 'GreatHomes:aboutUs' %}">About Us</a></li>
+					<li><a href="{%url 'GreatHomes:suscribeDisplay' %}">Newsfeed</a></li>
+				</ul>
+			</div>
+		</div>
+		</div>
+	</div>
+</body>
+</html>

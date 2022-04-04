@@ -1,0 +1,428 @@
+<html>
+<head>
+	<title>Newsfeed</title>
+	{% load staticfiles %}
+	<meta name="viewport" content="width=device-width, initial-scale=0.5">
+	<script src = "{% static '/js/jquery.js' %}" type="text/javascript"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'GreatHomesRealty/ionicons.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+</head>
+	<style>
+	.form-control {
+		margin-bottom: 15px;
+	}
+	p {
+		color: rgb(12, 0, 147);
+	}
+	h2 {
+		margin-bottom: 3%;
+		font-size: 2.5em;
+		color: rgb(52, 53, 226);
+	}
+	h4 {
+		margin-top: 20%;
+		color: rgb(52, 53, 226);
+		margin-bottom: 4%;
+		margin-left: -8%;
+	}
+	.suscribe {
+		margin-top: 8%;
+	}
+	.container {
+		text-align: left;
+	}
+	.logout {
+		text-align: right;
+		margin-right: 100px;
+	}
+	.message {
+		font-size: 18px;
+		font-weight: bold;
+		margin: 0px;
+		color: black;
+	}
+	.message1 {
+		font-size: 16px;
+		margin-top: 0px;
+		margin-bottom: 10px;
+		color: black;
+		margin-bottom: 5%;
+	}
+	.userlist {
+		list-style-type: none;
+		text-align: left;
+		margin-left: 20%;
+		font-size: 18px;
+		color: black;
+	}
+	.Manage {
+		display: inline-block;
+	}
+	.ion-ios-lightbulb-outline {
+		color: black;
+	}
+	.newsfeed {
+		background: linear-gradient(rgba(250, 197, 100, 1), rgba(250, 197, 100, 1));
+		border-radius: 30px;
+		padding: 1% 3%;
+		margin: 5% 0%;
+	}
+	.form-group {
+		margin-bottom: 0px;
+	}
+	.form-control {
+		margin-bottom: 0px;
+	}
+	.last-control {
+		margin-bottom: 8px;
+	}
+	label {
+		margin-bottom: 0px;
+		margin-top: 0px;
+	}
+	strong {
+		color: blue;
+	}
+	.error {
+		color: red;
+		margin-left: -7%;
+		margin-top: 10px !important;
+		margin-bottom: 0px !important;
+	}
+	.error2, .success2 {
+		margin-bottom: -12px !important;
+		margin-top: 20px !important;
+	}
+	.success {
+		color: green;
+		margin-top: 10px !important;
+		margin-bottom: 0px !important;
+		margin-left: -7%;
+	}
+	</style>
+<body>
+	{% if request.session.login > 0 %}
+	<header>
+		<ul>
+			<li><a href="{%url 'GreatHomes:index' %}">HomePage</a></li>
+			<li><a href="{%url 'UserDashboard:index' %}">DashBoard</a></li>
+			<li><a href="{%url 'UserDashboard:editProfileDisplay' %}">Edit Profile</a></li>
+			<li><a href="{%url 'GreatHomes:showAgentListing' id=request.session.login %}">Your Profile</a></li>
+			<li><a href="{%url 'GreatHomes:showAllListing' %}">Listings</a></li>
+			<li><a href="{%url 'GreatHomes:addListingDisplay' %}">Add Listing</a></li>
+		{% if user.user_level == "Admin" %}
+			<li><a href="{%url 'UserDashboard:createDisplay' %}">Add New Agent</a></li>
+		{% endif %}
+			<li><a href="{%url 'UserDashboard:logout' %}">Log Off</a></li>
+		</ul>
+	</header>
+	{% endif %}
+	<div class = "header">
+		<div class = "container-fluid">
+			<div class = "col-sm-5">
+				<h1><a href="{%url 'GreatHomes:index' %}"><i class = "ion-ios-home"></i> Great Homes Realty</a></h1>
+			</div>
+			<div class = "col-sm-7 navlinks">
+				<ul>
+					<li>
+						  <a class="dropdown-toggle" data-toggle="dropdown">All Listings
+						  <span class="caret"></span></a>
+						  <ul class="dropdown-menu">
+						    <li><a href="{%url 'GreatHomes:showAllListing' %}">For Sale</a></li>
+						    <li><a href="{%url 'GreatHomes:showAllRentals' %}">For Rent</a></li>
+						  </ul>
+					</li>
+					<li>
+						  <a class="dropdown-toggle" data-toggle="dropdown">Buying
+						  <span class="caret"></span></a>
+						  <ul class="dropdown-menu">
+						    <li><a href="{%url 'GreatHomes:buying' %}">Buying a Home</a></li>
+						    <li><a href="{%url 'GreatHomes:mortgage' %}">Mortgages</a></li>
+						    <li><a href="{%url 'GreatHomes:owningHome' %}">Owning A Home</a></li>
+						  </ul>
+					</li>
+					<li>
+						<a class="dropdown-toggle" data-toggle="dropdown">Selling
+						  <span class="caret"></span></a>
+						  <ul class="dropdown-menu">
+						    <li><a href="{%url 'GreatHomes:selling' %}">Selling</a></li>
+						    <li><a href="{%url 'GreatHomes:investing' %}">Investing</a></li>
+						  </ul>
+					<li><a href="{%url 'GreatHomes:aboutUs' %}">About Us</a></li>
+					<li><a href="{%url 'GreatHomes:suscribeDisplay' %}">Newsfeed</a></li>
+					<li><a href="{%url 'login:index' %}">Login</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+	<div class = "container main-message">
+ 		<div class = "row">
+ 	<div class = "clientLoginAjax">
+ 			<div class = "newsfeed col-sm-8">
+ 				<h2><i class = "ion-ios-lightbulb-outline"></i> Newsfeed From The Broker </h2>
+ 				<div class = "all_messages">
+
+ 				</div>
+			  	{% for message in all_messages %}
+			   <p class = "message OriginalMessage"> <strong>{{message.subject}}</strong> {{ message.created_at }}</p>
+			   <p class = "message1 OriginalMessage">{{ message.message}}</p>
+			   {% if Admin.user_level == "Admin" %}
+			   <form class = "deleteMessage" action = "{% url 'UserDashboard:deleteMessage' id=message.id %}" method = 'POST'>
+			   	{% csrf_token %}
+			   	 	<input type="submit" class = "btn btn-danger" value="Delete Message">
+			   </form>
+			   	<form action="{% url 'GreatHomes:suscriptionEmail' %}" method='POST'>
+					{% csrf_token %}
+					<input type = "hidden" name = "message" value = "{{message.message}}" >
+					<input type = "hidden" name = "subject" value = "{{message.subject}}" >
+				    <input type="submit" class = "btn btn-success" value="Send Mass Email">
+			  	</form>
+			  	<form action="{% url 'GreatHomes:displaySubscribers' %}" method='POST'>
+					{% csrf_token %}
+				    <input type="submit" class = "btn btn-primary" value="View subscribers">
+			  	</form>
+			   {% endif %}
+			   	{% endfor %}
+			   	<h3>Suscribe and Login to see more posts <i class = "ion-arrow-right-c"></i></h3>
+			</div>
+
+			<div class = "col-sm-offset-1 col-sm-3 col-xs-8 col-xs-offset-2 suscribeAjax">
+				<h4>Interested In Learning About Real Estate And Real Estate Investing?</h4>
+			<form action="" method='post' class = "suscribe form-horizontal">
+		<div class = "suscribeAjaxCut">
+	        {% csrf_token %}
+	        	<p class = "error allInputLengths"></p>
+	        	<p class = "error IsAlpha"></p>
+	        	<p class = "success successSuscribe"></p>
+	        <div class = "form-group">
+	            <div class = "">
+	            <label for = "first_name" class = "control-label">First Name:</label>
+	              <input type='text' name='first_name' class = "form-control" id = "first_name" placeholder = "First Name">
+	            </div>
+	          </div>
+	          <div class = "form-group">
+	            <div class = "">
+	            <label for = "last_name" class = "control-label">Last Name:</label>
+	              <input type='text' name='last_name' class = "form-control" id = "last_name" placeholder = "Last Name">
+	            </div>
+	          </div>
+	        	<p class = "error EmailDuplicate"></p>
+	          	<p class = "error InvalidEmail"></p>
+	        <div class = "form-group">
+	          <div class = "">
+	          <label for = "email" class = "control-label">Your Email:</label>
+	            <input type='text' name='email' class = "form-control last-control" id = "email" placeholder = "Email">
+	          </div>
+	        </div>
+	    </div>
+	          <div class="form-group">
+	            <label for="submit" class=""></label>
+	            <div class = "">
+	            <input id = "submit" type='submit' value='Suscribe' class = "btn btn-success">
+	           </div>
+	         </div>
+		    </form> 
+
+			<form action="" method='post' class = "unsuscribe form-horizontal">
+        <div class = "unsuscribeAjax">
+	        {% csrf_token %}
+	        <p class = "error NoEmailUnsuscribe"></p>
+	         <p class = "success successUnsuscribe"></p>
+	        <div class = "form-group">
+	          <div class = "">
+	          <label for = "email" class = "control-label">Unsuscribe Your Email:</label>
+	            <input type='text' name='email' class = "form-control last-control" id = "email" placeholder = "Email">
+	          </div>
+	        </div>
+	    </div>
+	          <div class="form-group">
+	            <label for="submit" class=""></label>
+	            <div class = "">
+	            <input id = "submit" type='submit' value='Unsuscribe' class = "btn btn-success">
+	           </div>
+	         </div>
+		    </form> 
+
+	    	<form action="" method='post' class = "clientLogin form-horizontal">
+	        {% csrf_token %}
+	        <p class = "error error2 NoEmailLogin"></p>
+	        <p class = "success success2 successLogin"></p>
+	        <div class = "form-group">
+	          <div class = "">
+	          <label for = "emailLogin" class = "control-label">Client Login - Your Email:</label>
+	            <input type='text' name='emailLogin' class = "form-control last-control" id = "emailLogin" placeholder = "Email">
+	          </div>
+	        </div>
+	          <div class="form-group">
+	            <label for="submit" class=""></label>
+	            <div class = "">
+	            <input id = "submit" type='submit' value='Client Login' class = "btn btn-success">
+	           </div>
+	         </div>
+		    </form> 
+		</div>
+		</div>
+	  </div>
+	</div>
+
+	{% if Admin.user_level == "Admin" %}
+	<div class = "container">
+		<div class = "row">
+			<div class = "col-sm-8">
+				<form class = "formPostMessage" action="{% url 'UserDashboard:postMessage' %}" method='POST'>
+					{% csrf_token %}
+					<div class = "form-group">
+			          <div class = "">
+			          <label for = "subject" class = "control-label">Subject:</label>
+			            <input type='text' name='subject' class = "form-control last-control" id = "subject" placeholder = "subject">
+			          </div>
+			        </div>
+					<textarea class = "form-control" rows = "3" name = "message"></textarea>
+				    <input type="submit" class = "btn btn-success" value="Post">
+			  	</form>
+	  		</div>
+	  	</div>
+ 	</div>
+ 	{% endif %}
+
+
+		<div class = "footer">
+		<div class = "container-fluid">
+		<div class = "row">
+			<div class = "col-xs-3">
+				<address>
+				Principal Broker: Bill Yu<br>
+				Cell: (410)-984-6661<br>
+				Email: BillYu99@gmail.com <br>
+				9822 Tenney Ct <br> Ellicott City, MD 21042
+				</address>
+			</div>
+			<div class = "col-xs-8 col-xs-offset-1 footerlist">
+				<ul>
+					<li><a href="{%url 'GreatHomes:index' %}">Home</a></li>
+					<li><a href="{%url 'GreatHomes:buying' %}">Buying</a></li>
+					<li><a href="{%url 'GreatHomes:selling' %}">Selling</a></li>
+					<li><a href="{%url 'GreatHomes:aboutUs' %}">About Us</a></li>
+					<li><a href="{%url 'GreatHomes:suscribeDisplay' %}">Newsfeed</a></li>
+				</ul>
+			</div>
+		</div>
+		</div>
+	</div>
+
+
+</body>
+<script type="text/javascript">  
+  $('.formPostMessage').on('submit', function(e){
+    e.preventDefault()
+    $.ajax({
+      url: 'UserDashboard/postMessage',
+      method: 'post',
+      data: $(this).serialize(),
+      success: function(serverResponse){
+      	console.log('post')
+        $('.newsfeed').html(serverResponse)
+      }
+    })
+  });
+
+
+  $('.suscribe').on('submit', function(e){
+    e.preventDefault()
+    $.ajax({
+      url: '/suscribe',
+      method: 'POST',
+      data: $(this).serialize(),
+      success: function(serverResponse){
+        console.log(serverResponse)
+          if(!serverResponse['InvalidEmail']) {
+	        $('.InvalidEmail').html("")
+	      } else {
+	         $('.InvalidEmail').html(serverResponse['InvalidEmail'])
+	      }
+	      if(!serverResponse['IsAlpha']) {
+	        $('.IsAlpha').html("")
+	      } else {
+	         $('.IsAlpha').html(serverResponse['IsAlpha'])
+	      }
+	      if(!serverResponse['allInputLengths']) {
+	        $('.allInputLengths').html("")
+	      } else {
+	         $('.allInputLengths').html(serverResponse['allInputLengths'])
+	      }
+	      if(!serverResponse['EmailDuplicate']) {
+	        $('.EmailDuplicate').html("")
+	      } else {
+	         $('.EmailDuplicate').html(serverResponse['EmailDuplicate'])
+	      }
+	      if(!serverResponse['success']) {
+	        $('.successSuscribe').html("")
+	      } else {
+	         $('.successSuscribe').html(serverResponse['success'])
+	      }
+
+      }
+    })
+  });
+
+  $('.unsuscribe').on('submit', function(e){
+    e.preventDefault()
+    $.ajax({
+      url: '/unsuscribe',
+      method: 'post',
+      data: $(this).serialize(),
+      success: function(serverResponse){
+        console.log(serverResponse)
+          if(!serverResponse['NoEmail']) {
+	        $('.NoEmailUnsuscribe').html("")
+	      } else {
+	         $('.NoEmailUnsuscribe').html(serverResponse['NoEmail'])
+	      }
+	      if(!serverResponse['success']) {
+	        $('.successUnuscribe').html("")
+	      } else {
+	         $('.successUnsuscribe').html(serverResponse['success'])
+	      }
+      }
+    })
+  });
+
+  $('.clientLogin').on('submit', function(e){
+    e.preventDefault()
+    $.ajax({
+      url: '/clientLogin',
+      method: 'post',
+      data: $(this).serialize(),
+      success: function(serverResponse){
+	      if(!serverResponse['noEmail']) {
+	        $('.noEmailLogin').html("")
+	      } else {
+	         $('.noEmailLogin').html(serverResponse['noEmail'])
+	      }
+	      if(!serverResponse['success']) {
+	        $('.successLogin').html("")
+	      } else {
+	         $('.successLogin').html(serverResponse['success'])
+	      }
+	      if(!serverResponse['all_messages']) {
+	        $('.all_messages').html("")
+	      } else {
+	      	$('.OriginalMessage').html("")
+	      	var appendHtml = '<p class = "message"><strong>';
+	         for(var item in serverResponse['all_messages']) {
+	         	var date = new Date(serverResponse['all_messages'][item].created_at).toDateString()
+	         	appendHtml += serverResponse['all_messages'][item].subject + '</strong> ' + date + '</p>'; 
+	         	appendHtml += '<p class = "message1">' + serverResponse['all_messages'][item].message + '</p><p class = "message"><strong>'
+	         }
+	         $('.all_messages').html(appendHtml)
+	      }
+      }
+    })
+  });
+
+</script>
+</html>

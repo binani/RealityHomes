@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Great Homes Realty</title>
+	 {% load staticfiles %}
+	 <meta name="description" content="Real Estate site for the greater Baltimore and Washington D.C. region.">
+	 <meta name="keywords" content="House, Homes, Real Estate, Commission, Price, Sale, Sell, Buy, Price, Appraisal, Listing, Mortgage">
+	 <meta name="viewport" content="width=device-width, initial-scale=0.5">
+	<script src = "{% static '/js/jquery.js' %}" type="text/javascript"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'GreatHomesRealty/ionicons.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+</head>
+<style>
+</style>
+<script type="text/javascript">
+
+</script>
+<body>
+	{% if request.session.login > 0 %}
+	<header>
+		<ul>
+			<li><a href="{%url 'GreatHomes:index' %}">HomePage</a></li>
+			<li><a href="{%url 'UserDashboard:index' %}">DashBoard</a></li>
+			<li><a href="{%url 'UserDashboard:editProfileDisplay' %}">Edit Profile</a></li>
+			<li><a href="{%url 'GreatHomes:showAgentListing' id=request.session.login %}">Your Profile</a></li>
+			<li><a href="{%url 'GreatHomes:showAllListing' %}">Listings</a></li>
+			<li><a href="{%url 'GreatHomes:addListingDisplay' %}">Add Listing</a></li>
+		{% if user.user_level == "Admin" %}
+			<li><a href="{%url 'UserDashboard:createDisplay' %}">Add New Agent</a></li>
+		{% endif %}
+			<li><a href="{%url 'UserDashboard:logout' %}">Log Off</a></li>
+		</ul>
+	</header>
+	{% endif %}
+	<div class = "header">
+		<div class = "container-fluid">
+			<div class = "col-sm-5">
+				<h1><a href="{%url 'GreatHomes:index' %}"><i class = "ion-ios-home"></i> Great Homes Realty</a></h1>
+			</div>
+			<div class = "col-sm-7 navlinks">
+				<ul>
+					<li>
+						  <a class="dropdown-toggle" data-toggle="dropdown">All Listings
+						  <span class="caret"></span></a>
+						  <ul class="dropdown-menu">
+						    <li><a href="{%url 'GreatHomes:showAllListing' %}">For Sale</a></li>
+						    <li><a href="{%url 'GreatHomes:showAllRentals' %}">For Rent</a></li>
+						  </ul>
+					</li>
+					<li>
+						  <a class="dropdown-toggle" data-toggle="dropdown">Buying
+						  <span class="caret"></span></a>
+						  <ul class="dropdown-menu">
+						    <li><a href="{%url 'GreatHomes:buying' %}">Buying a Home</a></li>
+						    <li><a href="{%url 'GreatHomes:mortgage' %}">Mortgages</a></li>
+						    <li><a href="{%url 'GreatHomes:owningHome' %}">Owning A Home</a></li>
+						  </ul>
+					</li>
+					<li>
+						<a class="dropdown-toggle" data-toggle="dropdown">Selling
+						  <span class="caret"></span></a>
+						  <ul class="dropdown-menu">
+						    <li><a href="{%url 'GreatHomes:selling' %}">Selling</a></li>
+						    <li><a href="{%url 'GreatHomes:investing' %}">Investing</a></li>
+						  </ul>
+					<li><a href="{%url 'GreatHomes:aboutUs' %}">About Us</a></li>
+					<li><a href="{%url 'GreatHomes:suscribeDisplay' %}">Newsfeed</a></li>
+					<li><a href="{%url 'login:index' %}">Login</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class = "container-fluid">
+	<div class = "body">
+		{% for listing in allListings %}
+			<div class = "col-md-4 col-sm-6 col-sm-offset-0 col-xs-7 col-xs-offset-2 picture">
+				<div class = "row addressdiv">
+					{% if listing.url %}
+					<a class = "imagelist" href="{%url 'GreatHomes:showListing' id=listing.id %}"><img class = "listingimage" src="{{listing.url}}" height = "200" width = "300"></a>
+					{% endif %}
+					<address class = "address" style="width:90%"><a class = "imagelist" href="{%url 'GreatHomes:showListing' id=listing.id %}"><i class="ion-home icon-big"></i>
+					{{listing.addressStreet}} <br>
+					{{listing.addressCity}},
+					{{listing.addressState}}. {{listing.addressZipcode}}<br>
+					${{ listing.price }} </a>
+					</address>
+				</div>
+			</div>
+		{% endfor %}
+		</div>	
+	</div>
+
+	<div class = "support">
+		<div class = "container">
+		<div class = "row">
+			<div class = "col-md-4 col-xs-12">
+				<h1><a href="{%url 'GreatHomes:contact' %}"><i class = "ion-ios-telephone"></i>Contact Agent</a></h1>
+			</div>
+			<div class = "col-md-4 col-xd-12">
+				<h1><a href="{%url 'GreatHomes:buying' %}"><i class = "ion-key"></i>Buying</a></h1>
+			</div>
+			<div class = "col-md-4 col-xd-12">
+				<h1><a href="{%url 'GreatHomes:selling' %}"><i class = "ion-ios-home"></i>Selling</a></h1>
+			</div>
+			
+		</div>
+		</div>
+	</div>
+	<div class = "support2">
+		<div class = "container">
+		<div class = "row">
+			<div class = "col-xs-12">
+				<p>Don't be deceived by the address - this charming James Bay border cottage with separate studio/guest suite is a sanctuary. Generously sized, this custom home stands out as a unique and refreshing offering. An ideal 5BR, 3 bath home in a convenient village location. Elegant Country fam home w/Ocean Views from all primary rooms. Sit on your front sundeck and enjoy your privacy or wonder to the sun-drenched, easy care, back yard that has been beautifully landscaped. Buses, church, shopping, all amenities close by. Just enough garden space so you can enjoy your own flower beds veggies - and there's a covered patio for morning coffee. granite island, Parking for three cars and a large eat in country kitchen overlooking the south facing rear yard and deck = peaceful suite potential. Please visit virtual tour for more information.</p>
+			</div>
+		</div>
+		</div>
+	</div>
+
+	<div class = "footer">
+		<div class = "container-fluid">
+		<div class = "row">
+			<div class = "col-xs-3">
+				<address>
+				Principal Broker: Bill Yu<br>
+				Cell: (410)-984-6661<br>
+				Email: BillYu99@gmail.com <br>
+				9822 Tenney Ct <br> Ellicott City, MD 21042
+				</address>
+			</div>
+			<div class = "col-xs-7 col-xs-offset-2 footerlist">
+				<ul>
+					<li><a href="{%url 'GreatHomes:index' %}">Home</a></li>
+					<li><a href="{%url 'GreatHomes:buying' %}">Buying</a></li>
+					<li><a href="{%url 'GreatHomes:selling' %}">Selling</a></li>
+					<li><a href="{%url 'GreatHomes:aboutUs' %}">About Us</a></li>
+					<li><a href="{%url 'GreatHomes:suscribeDisplay' %}">Newsfeed</a></li>
+				</ul>
+			</div>
+		</div>
+		</div>
+	</div>
+</body>
+</html>

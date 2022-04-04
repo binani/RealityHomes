@@ -1,0 +1,338 @@
+<html>
+<head>
+	<title>Buying</title>
+	{% load staticfiles %}
+	<meta name="viewport" content="width=device-width, initial-scale=0.5">
+	<script src = "{% static '/js/jquery.js' %}" type="text/javascript"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'GreatHomesRealty/ionicons.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/infoPages.css' %}">
+</head>
+<script type="text/javascript">
+$(document).ready(function() {
+	$(".1").click(function(){
+    	$(".1a").toggle();
+	});
+	$(".2").click(function(){
+    	$(".2a").toggle();
+	});
+	$(".3").click(function(){
+    	$(".3a").toggle();
+	});
+	$(".4").click(function(){
+    	$(".4a").toggle();
+	});
+	$(".5").click(function(){
+    	$(".5a").toggle();
+	});
+	$(".6").click(function(){
+    	$(".6a").toggle();
+	});
+	$(".7").click(function(){
+    	$(".7a").toggle();
+	});
+	$(".8").click(function(){
+    	$(".8a").toggle();
+	});
+	$(".9").click(function(){
+    	$(".9a").toggle();
+	});
+})
+</script>
+<style type="text/css">
+</style>
+<body>
+	{% if request.session.login > 0 %}
+	<header>
+		<ul>
+			<li><a href="{%url 'GreatHomes:index' %}">HomePage</a></li>
+			<li><a href="{%url 'UserDashboard:index' %}">DashBoard</a></li>
+			<li><a href="{%url 'UserDashboard:editProfileDisplay' %}">Edit Profile</a></li>
+			<li><a href="{%url 'GreatHomes:showAgentListing' id=request.session.login %}">Your Profile</a></li>
+			<li><a href="{%url 'GreatHomes:showAllListing' %}">Listings</a></li>
+			<li><a href="{%url 'GreatHomes:addListingDisplay' %}">Add Listing</a></li>
+		{% if user.user_level == "Admin" %}
+			<li><a href="{%url 'UserDashboard:createDisplay' %}">Add New Agent</a></li>
+		{% endif %}
+			<li><a href="{%url 'UserDashboard:logout' %}">Log Off</a></li>
+		</ul>
+	</header>
+	{% endif %}
+	<div class = "header">
+		<div class = "container-fluid">
+			<div class = "col-sm-5">
+				<h1><a href="{%url 'GreatHomes:index' %}"><i class = "ion-ios-home"></i> Great Homes Realty</a></h1>
+			</div>
+			<div class = "col-sm-7 navlinks">
+				<ul>
+					<li>
+						  <a class="dropdown-toggle" data-toggle="dropdown">All Listings
+						  <span class="caret"></span></a>
+						  <ul class="dropdown-menu">
+						    <li><a href="{%url 'GreatHomes:showAllListing' %}">For Sale</a></li>
+						    <li><a href="{%url 'GreatHomes:showAllRentals' %}">For Rent</a></li>
+						  </ul>
+					</li>
+					<li>
+						  <a class="dropdown-toggle" data-toggle="dropdown">Buying
+						  <span class="caret"></span></a>
+						  <ul class="dropdown-menu">
+						    <li><a href="{%url 'GreatHomes:buying' %}">Buying a Home</a></li>
+						    <li><a href="{%url 'GreatHomes:mortgage' %}">Mortgages</a></li>
+						    <li><a href="{%url 'GreatHomes:owningHome' %}">Owning A Home</a></li>
+						  </ul>
+					</li>
+					<li>
+						<a class="dropdown-toggle" data-toggle="dropdown">Selling
+						  <span class="caret"></span></a>
+						  <ul class="dropdown-menu">
+						    <li><a href="{%url 'GreatHomes:selling' %}">Selling</a></li>
+						    <li><a href="{%url 'GreatHomes:investing' %}">Investing</a></li>
+						  </ul>
+					<li><a href="{%url 'GreatHomes:aboutUs' %}">About Us</a></li>
+					<li><a href="{%url 'GreatHomes:suscribeDisplay' %}">Newsfeed</a></li>
+					<li><a href="{%url 'login:index' %}">Login</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class = "container-fluid main">
+		<h1>Buying A Home</h1>
+		<h3 class = "1"><i class = "ion-arrow-down-b"></i> Appraisals and Market Value</h3>
+		<ul class = "1a initiallyHidden">
+			<li class = "question">Are there standard ways to determine how much a home is worth?</li>
+			<li>Yes. A comparative market analysis and an appraisal are the two most common and reliable ways to determine a home's value. 
+Your real estate agent can provide a comparative market analysis, an informal estimate of value based on the recent selling price of similar neighborhood properties. Reviewing comparable homes that have sold within the past year along with the listing, or asking, price on current homes for sale should prevent you from overpaying.
+A certified appraiser can provide an appraisal of a home. After visiting the home to check such things as the number of rooms, improvements, size and square footage, construction quality, and the condition of the neighborhood, the appraiser then reviews recent comparable sales to determine the estimated value of the home.
+Lenders normally require an appraisal – which runs between $200 to $300 – before they will approve a mortgage loan. This protects the lender by ensuring the home is worth the money you want to borrow. 
+You also can check recent sales in public records, through private firms, and on the Internet to help you determine a home’s potential worth.</li>
+			<li class = "question">How do you determine how much a home is worth?</li>
+			<li>The short answer: a home is ultimately worth what is paid for it. Everything else is really an estimate of value. Take, for example, a hot seller’s market when demand for housing is high but the inventory of available homes for sale is low. During this time, homes can sell above and beyond the asking price as buyers bid up the price. The fair market value, or worth, is established when “a meeting of the minds” between the buyer and the seller takes place.</li>
+			<li class = "question">What about appraised value and market value?</li>
+			<li>A certified appraiser who is trained to provide the estimated value of a home determines its appraised value. The appraised value is based on comparable sales, the condition of the property, and several other factors.
+Market value is the price the house will bring at a given point in time, once the buyer and seller establish a “meeting of the minds” on price.</li>
+			<li class = "question">What is the difference between list price and sales price?</li>
+			<li>The list price is a seller's advertised price, or asking price, for a home. It is a rough estimate of what the seller wants to complete a home sale. A seller can price high, low – (which seldom happens), or very close to the amount they want to get. A good way to determine if the list price is a fair one is to look at the sales prices of similar homes that have recently sold in the area. 
+The sales price is the actual amount a home sells for.</li>
+		</ul>
+		<h3 class = "2"><i class = "ion-arrow-down-b"></i> Closing Costs</h3>
+		<ul class = "2a initiallyHidden">
+			<li class = "question">Is it possible to save on closing costs?</li>
+			<li>Certainly, once you get past the sticker shock. Closing costs are expensive. They can average between 5 to 6 percent of the total home purchase price. But here are a few ways to save:
+
+Haggle with the seller. He may pay all or part of the closing costs.
+Nab a no-point loan. You may have to pay a higher interest rate, but if you are strapped for cash and can qualify for a higher interest rate, you may find this type of loan can significantly reduce your closing costs.
+Grab a no-fee loan. Although the fee is usually wrapped into a higher rate loan, it does offer one advantage – you get to save on the amount of cash you would need up-front.
+Secure seller financing. These loans typically avoid the traditional fees or charges imposed by lenders.
+Shop ‘til you drop for the best deal. Every lender has its own unique fee structure; you are bound to find one that works for you.</li>
+			<li class = "question">Is there anything I should know about closing day?</li>
+			<li>Yes. The following to-do list can help save you a few headaches and keep the closing on track:
+
+Keep extra money in your account. Something unexpected can pop up during the closing that will require more money out of your pocket. Take your checkbook. Even better, find out how much you will need to pay and write a certified check for the total amount.
+Take your loan commitment letter. Use it to verify loan approval in case of a mistake or misunderstanding with the lender.
+Take your contract to purchase. Pull it out if something a little suspicious comes up.
+Take your personal ID. A driver’s license or other personal identification will do.
+Do a before-closing inspection. It is always a good idea, when possible, to walk through the property to make a list of any problems.
+Utilities. Arrange in advance to have the water and electric meters read on closing day and the service switched to your name to prevent interrupted service. The same applies for the fuel tank.</li>
+			<li class = "question">What are closing costs?</li>
+			<li>Closing, or settlement, costs are expenses over and above the price of the property. Both the buyer and seller incur some of these expenses when transferring ownership of a property. Who actually pays, however, often depends on local custom and what the buyer or seller negotiates. Closing costs normally include title insurance, loan points, escrow or closing day charges, property taxes, and document fees. The lender provides an estimate of closing costs for prospective homebuyers.</li>
+		</ul>
+
+		<h3 class = "3"><i class = "ion-arrow-down-b"></i> Getting Started</h3>
+		<ul class = "3a initiallyHidden">
+			<li class = "question">How do you decide whether to add on to an existing home or purchase a new one?</li>
+			<li>There are a few things to consider, including cost, individual needs, and what will add value down the road. Also important: your emotional attachment to the existing home.
+			As designer and builder Philip S. Wenz, the author of Adding to a House: Planning, Design & Construction, notes, an addition is much cheaper than building a new home and can offer a “new” home without the heartache of moving.
+			Other considerations: 
+Can you finance the home improvement with your own cash or will you need a loan?
+How much equity is in the property? A fair amount will make it that much easier to get a loan for home improvements.
+Is it feasible to expand the current space for an addition?
+What is permissible under local zoning and building laws? Despite your deep yearning for a new sunroom or garage, you will need to know if your town or city will allow such improvements.
+Are there affordable properties for sale that would satisfy your changing housing needs? 
+Explore your options. Make sure your decision is one you can live with – either under the same roof or under a different one.</li>
+			<li class = "question">How much can I afford?</li>
+			<li>The general rule is that you can buy a home that costs about two-and-one-half times your annual salary. A good real estate agent or lender can determine how much you can afford and estimate the maximum monthly payment based on the loan amount, taxes, insurance and other expenses. Your real estate agent can help you to figure out now how your income, debts, and expenses can affect what you can afford, and how much you may be able to borrow to purchase a home, and even prepare an estimated settlement sheet for homes you like.</li>
+			<li class = "question">Is it best to save for the ultimate dream home or begin with a less expensive starter home?</li>
+			<li>It can take a long time to save for that perfect dream home. Meanwhile, the market has been flooded with some of the most favorable mortgage interest rates in years. Low rates make housing more affordable, which is why so many buyers have jumped on the home buying bandwagon.
+Home-price appreciation has also been strong, making very solid gains in communities across the country. In fact, home prices are expected to increase 2.5 percent to 3 percent annually over the next five years. 
+If you purchase a starter home today, you can potentially begin to build value that can lead to the purchase of a larger, or more desirable, trade-up home in the future.</li>
+			<li class = "question">What are the advantages of owning a home?</li>
+			<li>There are many. Among the most appealing: you own it, which gives you, instead of a landlord, control of your living space. Other benefits stem from potential tax savings and the buildup of equity as your property likely appreciates in price over time. Equity can be used to help put children through college, purchase a second home, or make home improvements.
+The mortgage interest paid on a home loan is tax deductible, as is the local property tax. If you get a fixed-rate home mortgage loan, you also can invest more wisely knowing your monthly mortgage payment, unlike rent, will not change substantially.</li>
+			<li class = "question">What is the first step to buying a home?</li>
+			<li>Make sure you are ready – psychologically and financially. Ask yourself the following questions: Do I have steady income? Is my debt lower than my total income? Do I have enough money to pay for the down payment and closing costs? Am I working hard enough to improve bad credit?
+A house needs constant care and attention. Also ask yourself if your budget will allow for unexpected repairs and upkeep. Once you can honestly answer “yes” to these questions, you are several steps ahead of the game and that much closer to becoming a homeowner.</li>
+		</ul>
+
+		<h3 class = "4"><i class = "ion-arrow-down-b"></i> Home Inspections</h3>
+		<ul class = "4a initiallyHidden">
+			<li class = "question">Do I need to be at the inspection?</li>
+			<li>No, but it is a very good idea to be there. Following the check-over, the home inspector can answer your questions and discuss problem areas with you. This is also an opportune time to get an objective opinion about the home from someone who does not have emotional or financial ties to the property.</li>
+			<li class = "question">How do I select a home inspector?</li>
+			<li>Begin by only hiring one who is qualified and experienced, someone who belongs to an industry trade group, such as the American Society of Home Inspectors (ASHI). This organization has developed formal inspection guidelines and a professional code of ethics for its members. Also, membership in ASHI is not automatic; members must have demonstrated field experience and technical knowledge about structures and their various systems.</li>
+			<li class = "question">Should I hire a home inspector?</li>
+			<li>By all means. Buying a home without getting expert advice is risky. Once a home inspector uncovers major plumbing and electrical problems, for example, you may decide you do not want to spend several thousand dollars on repairs. 
+Always include an inspection clause in your written offer. This clause gives you an “out” from buying if serious problems are detected. It also gives you another chance to negotiate the purchase price if repairs are needed. The clause can even specify that the sellers fix any problem that is uncovered before you settle, or close, on the home.
+You also may want to consider hiring experts to inspect the home for a number of health-related risks like radon gas, asbestos, or possible problems with the water or waste disposal system.</li>
+			<li class = "question">What does a home inspector do?</li>
+			<li>A home inspector is a paid professional – often a contractor or an engineer – who checks the safety of a home. Home inspectors search for defects or other problems that could become your worst nightmare later on. They focus particularly on the home’s structure, construction, and mechanical systems. 
+It is not the inspector’s job to determine whether you are getting good value for your money. He does not establish value, only whether the home might collapse in a storm or if the roof might cave in.
+A home inspection typically takes place after a purchase contract between the buyer and seller has been signed.</li>
+		</ul>
+
+		<h3 class = "5"><i class = "ion-arrow-down-b"></i> Insurance</h3>
+		<ul class = "5a initiallyHidden">
+			<li class = "question">Is private mortgage insurance necessary?</li>
+			<li>Lenders require private mortgage insurance (PMI) on most conventional loans with less than a 20 percent down payment. They believe there is a correlation between borrower equity and default. They have found that the less money borrowers put down, the more likely they are to default on a loan. PMI guarantees the lender will not lose money if this happens and a foreclosure is necessary. 
+The buyer pays this insurance, usually a small fee at the outset and a percentage of the face amount of the loan that is added to the monthly payment.
+What most homeowners do not realize is that the insurance is usually no longer necessary after enough equity has built up in the property. Contact your lender if you meet this requirement. 
+A precaution: do not confuse PMI with mortgage life insurance. The latter pays all, or a portion, of your mortgage in the event of your death.</li>
+			<li class = "question">What about title insurance?</li>
+			<li>Title insurance protects the lender against unclear title to the property you are buying. It is almost always a requirement for closing on a home. If you desire coverage as well, buy an owner’s policy, which will protect you against any title-search errors and losses that arise from disputes over property ownership. The cost of title insurance is usually a set value per thousand of dollars of the total loan amount.</li>
+			<li class = "question">What does homeowners’ insurance cover?</li>
+			<li>It protects against disasters – whether natural, manmade or mechanical. A standard policy insures the home, as well as your possessions. Because this insurance is packaged, it covers liability for any harm, loss, and property damage that you or your family members cause others. And it includes additional living expenses in case you are temporarily displaced because of damage from a fire or other insured disaster. 
+While you are not legally required to purchase homeowners' insurance, mortgage lenders require you to do so." or "mortgage lenders stipulate that you must.
+If your mortgage is paid up - or you never had one - it is still a good idea to have homeowners’ insurance to protect your home and your belongings.</li>
+			<li class = "question">What is condo and co-op insurance?</li>
+			<li>This insurance protects your investment and personal belongings from most disasters. As an owner, you will need two insurance policies – your own to cover liability, living expenses, your belongings and structural improvements, and a master policy provided by the condo or co-op board. The master policy covers the common areas that you share with others in the building. It is paid for using the monthly condo fee that you and other owners pay. </li>
+			<li class = "question">What is condo and co-op insurance?</li>
+			<li>This insurance protects your investment and personal belongings from most disasters. As an owner, you will need two insurance policies – your own to cover liability, living expenses, your belongings and structural improvements, and a master policy provided by the condo or co-op board. The master policy covers the common areas that you share with others in the building. It is paid for using the monthly condo fee that you and other owners pay.</li>
+			<li class = "question">What kind of home insurance should I get?</li>
+			<li>A standard policy will do in most instances. It protects against several natural disasters and catastrophic events. However, it will not guard against earthquakes, floods, war, and nuclear accidents. The policy can be expanded to include these disasters as well as coverage for such things as workers' compensation. In fact, the lender may require that you purchase flood or earthquake insurance if the house is in a flood zone or a region susceptible to earthquakes. 
+You also can increase coverage beyond the depreciated value of personal property such as televisions and furniture by purchasing a replacement-cost endorsement. Home-based business-coverage, once overlooked, is an ever-increasing popular rider. It does not cover liability associated with the business but rather contents such as home office equipment and general liability to cover injuries to clients and employees. 
+Other considerations: an inflation rider, which increases coverage as the home’s value rises, and getting insurance that is equal to the full replacement value of the home. 
+Insurance companies usually require an amount equal to at least 80 percent of the full replacement value. Otherwise, only a portion of the loss would be covered.</li>
+		</ul>
+
+		<h3 class = "6"><i class = "ion-arrow-down-b"></i> Lease Options</h3>
+		<ul class = "6a initiallyHidden">
+			<li class = "question">How does a lease option work?</li>
+			<li>A landlord agrees to give a renter an exclusive option to purchase the property. The option price is usually determined at the outset, but not always, and the agreement states when the purchase should take place – whether, say, six months, or a year or two down the road.
+A portion of the rent is used to make the future down payment. Most lenders will accept the down payment if the rental payments exceed the market rent and a valid lease-purchase agreement is in effect. 
+Before you opt to do a lease option, find out as much as possible about how they work. Talk to real estate agents, read published materials, and, in the end, have an attorney review any paperwork before you sign on the dotted line.</li>
+			<li class = "question">What is a lease option?</li>
+			<li>It is an agreement between a renter and a landlord in which the renter signs a lease with an option to purchase the property. The option only binds the seller; the tenant has a choice to make a purchase or not.
+Lease options are common among buyers who would like to own a home but do not have enough money for the down payment and closing costs. A lease option may also be attractive to tenants who are working to improve bad credit before approaching a lender for a home loan.</li>
+		</ul>
+
+		<h3 class = "7"><i class = "ion-arrow-down-b"></i> Negotiating & Closing the Best Deal</h3>
+		<ul class = "7a initiallyHidden">
+			<li class = "question">Are low-ball offers a good idea?</li>
+			<li>Any offer can be presented, but a low-ball one that is substantially less than the asking price can dampen a prospective sale and prevent the seller from negotiating at all. Unless the home is overpriced to begin with the offer will probably be rejected. 
+Do your homework before making an offer. Compare prices of recently sold homes and new listings in the neighborhood. It also helps to know something about the seller’s motivation. A lower price with a speedy closing, for example, might motivate a seller who must move, has another house under contract, or must sell quickly for other reasons. 
+Also recognize that while your low offer in a normal market might be rejected at once, it might motivate the seller in a buyer’s market to either accept it or make a counter-offer.</li>
+			<li class = "question">Can you negotiate interest rates?</li>
+			<li>A few lenders will negotiate the mortgage rate and number of points on a loan. However, this is more the exception than the rule with established lenders. As always, shop around and know the market before you enter a lender’s office. Rates are often published in local newspapers and on Internet Web sites.
+You may have more luck when dealing directly with a seller who has agreed to finance your loan. He is likely to be more open to negotiation, particularly when motivated to make a quick sale.</li>
+			<li class = "question">Do I need an attorney to buy a home?</li>
+			<li>A lot depends on the state where the property is located. Some require an attorney; others do not. 
+Most homebuyers can generally handle routine real estate purchase contracts as long as they read the fine print and understand all the terms. But pay close attention to any clauses, contingencies, and other special considerations that will allow you or the seller to back out of the contract.
+When in doubt, consult an attorney. Ask relatives and friends, or your real estate agent, for recommendations. Call to inquire about their fees and to check their level of experience. Expect that more seasoned attorneys will cost more.</li>
+			<li class = "question">Does the seller take the furnishings once the home is sold?</li>
+			<li>Normally. This is because the fixtures – personal property that is permanently attached to a home, such as built-in bookcases or a furnace – automatically stay with the house unless noted otherwise in the sales contract. Anything that is not nailed down is negotiable, including appliances that are not built in, such as washers and dryers.
+</li>
+			<li class = "question">Is it possible to buy a home below market price?</li>
+			<li>Certainly, but do not hold your breath. It takes a lot of determination and time to find a real bargain. But if you are adamant, here are some likely targets to pursue:
+
+foreclosed property
+a fixer-upper
+hard-to-sell new homes in a housing development
+tenant-in-common partnerships.
+
+With the latter, you may be able to buy a partial interest in this form of title to property owned by two or more individuals because the partners often sell at a discount.
+However, bargains are easier to come by in a soft real estate market, when the economy is in a recession, and when homeowners, and builders and sponsors of condominium conversions, are desperate to move unsold units.</li>
+			<li class = "question">What are some negotiating tips?
+</li>
+			<li>Know the seller's motivation to sell. This will enhance your negotiating position. Sellers who must move quickly due to a job transfer, divorce, or contract on another home, are more inclined to accept a lower price to speed the process along. 
+Remember, too, that the listing, or asking, price is what the seller would like to receive for the home. It is not necessarily what the seller will settle for. So know value. Before you make an offer, check recent sales and listing prices of comparable neighborhood homes and compare them to the seller's asking price. 
+Other tips:
+
+Be flexible. Never say, “take it or leave it.” That can sour negotiations and ruin the deal.
+Never show your hand or reveal your next step.
+Each time you increase your offering price ask for something in return, such as repairs, appliances, even lawn furniture.
+If you plan to pay cash or have a tentative commitment for a loan, use your strong financial position as a negotiating tool.
+Don’t let emotions such as pride, fear, love, and anger get in the way of negotiating the best deal. Leave irrational feelings at home.</li>
+			<li class = "question">What contingencies should appear in the offer?</li>
+			<li>When you look to purchase a home, anticipate potential problems. But protect against them so that if something does go wrong, you can cancel the contract without penalty. This is what contingencies allow you to do. They should be included in any offer you present to buy a home.
+Most offers include two standard contingencies: a financing contingency, which makes the sale dependent on your ability to obtain a loan commitment from a lender, and an inspection contingency, which allows you to have a professional inspect the property. 
+Without contingencies, a buyer could forfeit his deposit under certain circumstances if he backs out of a deal. 
+The purchase contract also should include the seller's responsibilities, such as passing clear title, maintaining the property in its present condition until closing, and making any agreed-upon repairs.</li>
+		</ul>
+
+		<h3 class = "8"><i class = "ion-arrow-down-b"></i> Property Taxes</h3>
+		<ul class = "8a initiallyHidden">
+			<li class = "question">Are impound accounts required for all mortgage loans?</li>
+			<li>They can typically be waived on a conventional loan if the loan amount is 80 percent or less of the purchase price. But the lender might charge you an additional 1/4 point for this option to waive the escrow.
+One way to avoid an impound account on an owner-occupied mortgage is to raise your down payment amount slightly. The exact amount necessary to avoid the escrow will vary with the lender.
+In some states, lenders let buyers set up separate accounts in which they place specific funds and then pay the insurance and property taxes themselves. These are called pledge accounts, and they must be set up before you close on the home. 
+An impound account can usually be dropped on an owner-occupied loan once the loan-to-value ratio equals 80 percent or less. But restrictions apply: payments will have to be current and your record of making on-time payments pretty solid. Contact your lender if you meet these requirements and want to drop your impound account.</li>
+			<li class = "question">Are property taxes deductible?</li>
+			<li>Yes. Like the mortgage interest paid on a home loan, property taxes are fully deductible from your income. You may deduct them every year on your primary residence, second home and other investment properties. 
+However, escrow money held for property taxes cannot be deducted until the money is actually used to pay the property taxes.</li>
+			<li class = "question">Can I contest my property taxes?</li>
+			<li>Many people do, mainly because determining value can often be tricky. This is especially true in a changing market when local prices either take off dramatically or plunge precipitously, like during the Texas oil bust of the 1980s.
+While it is up to a professional assessor to evaluate property value for tax purposes, property owners are usually allowed to contest their assessment until a certain date after they are made public. 
+Once you contest, you will have to prove why you think your property is worth less – few homeowners contest hoping to pay more taxes! The two most popular ways for determining value are an appraisal and a comparative market analysis. With an appraisal, a professional estimates the property's market value based on recent sales of comparable properties. A comparative market analysis is an informal estimate of market value performed by a real estate agent based on similar sales and property attributes. Most agents will offer free analyses to win your business.
+Contact your local tax assessor's office for procedures on appealing your property tax assessment.</li>
+			<li class = "question">How are individual tax bills figured?</li>
+			<li>Unlike the income tax and the sales tax you pay, the property tax is not based on how much money you earn or how much you spend. It is based solely on how much the property you own is worth. 
+The real property tax is an ad valorem tax, or a tax based on the value of property. 
+Ideally, the owners of property of equal value pay the same amount of property taxes, and the owners of more valuable property pay more in taxes than the owners of less valuable property. The tax is calculated using a variety of formulas and is based on a property’s assessed value – its full market value or a percentage thereof – and the tax rate of the taxing jurisdiction, minus any property tax exemptions, such as those offered for the elderly or veterans</li>
+			<li class = "question">What is an impound account?</li>
+			<li>It is a special bank account held by the lender to collect monthly payments from the borrower to pay property taxes, mortgage insurance, and hazard insurance. These accounts also are called escrow or reserve accounts.
+Lenders like to set up impound accounts to ensure the property taxes and insurance will be paid on time. They typically also collect a two-month cushion for taxes and insurance at the closing. A few states require the lender to pay interest on funds held in these accounts.</li>
+			<li class = "question">Why do homeowners have to pay property taxes?</li>
+			<li>Property taxes are assessed by city and county governments to generate the bulk of their operating revenues. The taxes help pay for such public services as schools, libraries, roads, and police protection. 
+Re-valuations of the tax are often done periodically, although the time interval varies from state to state or, in some states, from town to town, and can range from annual reassessments to periods of ten years or more.</li>
+		</ul>
+
+		<h3 class = "9"><i class = "ion-arrow-down-b"></i> Tax Matters</h3>
+		<ul class = "9a initiallyHidden">
+			<li class = "question">Are fees and assessments owed a homeowner’s association deductible?</li>
+			<li>Generally not because they are considered personal living expenses. But if an association has a special assessment to make capital improvements, condo owners may be able to add the expense to their cost basis when the property is sold. Another exception may apply if you rent your condo – the monthly condo fee is deductible every year as a rental expense.</li>
+			<li class = "question">Are there tax credits for first-time homebuyers?</li>
+			<li>Yes, thanks to the many city and county governments that offer Mortgage Credit Certificate (MCC) programs, which allow first-time homebuyers to take advantage of a special federal income tax write-off. The credit reduces the amount of federal taxes paid by the buyer each year, if he keeps the same loan and lives in the same house. 
+An MCC also makes it easier for eligible buyers to qualify for a mortgage loan. The lender can reduce the housing expense ratio – the percentage of gross monthly income applied toward housing expenses – by the amount of the tax savings. Normally, lenders reject loans if the housing expense ratio is too high.
+Program requirements for MCCs vary, although most adhere to the following guidelines: 
+The buyer must live in the home being purchased with an MCC-assisted mortgage.
+Total household income cannot exceed certain limits.
+The buyer cannot have owned a principal residence within the past three years. This restriction may be waived if a property is purchased within a certain targeted area.
+The purchase price must fall within an established limit.</li>
+			<li class = "question">Are up-front fees and closing costs deductible?</li>
+			<li>Many of the costs paid at closing are not immediately deductible. 
+The exception is points you pay to purchase your home loan. They are deductible for that year. Points paid when you refinance an existing mortgage must be deducted over the life of the new loan.
+Some fees – including loan application, appraisal, document preparation and recording fees – that are assessed when purchasing a home can be recouped by adding them to the adjusted cost basis, the starting point for figuring a gain or loss when selling the home. 
+Significant home improvements also can be calculated into your cost basis.</li>
+			<li class = "question">How can owning a home pay off at tax time?</li>
+			<li>A home provides many tax benefits, literally from the time you buy to the time you sell. The mortgage interest paid on a home loan up to $1 million for a primary residence or second home is tax deductible every year, as is the local property tax. Other mortgage costs – including late-payment charges and early-payment penalties – are also deductible.
+And if you use a portion of your home for business purposes, you can take a depreciation deduction as well.
+Many federal tax benefits are also available from local and state tax agencies. Contact your local tax agency for more information.</li>
+		</ul>
+	</div>
+		<div class = "footer">
+		<div class = "container-fluid">
+		<div class = "row">
+			<div class = "col-xs-3">
+				<address>
+				Principal Broker: Bill Yu<br>
+				Cell: (410)-984-6661<br>
+				Email: BillYu99@gmail.com <br>
+				9822 Tenney Ct <br> Ellicott City, MD 21042
+				</address>
+			</div>
+			<div class = "col-xs-8 col-xs-offset-1 footerlist">
+				<ul>
+					<li><a href="{%url 'GreatHomes:index' %}">Home</a></li>
+					<li><a href="{%url 'GreatHomes:buying' %}">Buying</a></li>
+					<li><a href="{%url 'GreatHomes:selling' %}">Selling</a></li>
+					<li><a href="{%url 'GreatHomes:aboutUs' %}">About Us</a></li>
+					<li><a href="{%url 'GreatHomes:suscribeDisplay' %}">Newsfeed</a></li>
+				</ul>
+			</div>
+		</div>
+		</div>
+	</div>
+</body>
+</html>
